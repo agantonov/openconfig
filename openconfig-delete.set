@@ -1,0 +1,3 @@
+delete openconfig-interfaces:interfaces
+delete openconfig-network-instance:network-instances
+delete openconfig-routing-policy:routing-policy
