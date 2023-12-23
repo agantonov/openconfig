@@ -1,0 +1,44 @@
+<configuration>
+    <interfaces xmlns="http://openconfig.net/yang/interfaces">
+        <interface>
+             <name>lo0</name>
+             <config>
+                 <name>lo0</name>
+                 <type>loopback</type>
+                 <enabled>true</enabled>
+             </config>
+             <subinterfaces>
+                 <subinterface delete="delete">
+                     <index>2</index>
+                </subinterface>
+            </subinterfaces>
+         </interface>
+     </interfaces>
+     <network-instances xmlns="http://openconfig.net/yang/network-instance">
+		<network-instance delete="delete">
+			<name>openconfig-vrf</name>
+		</network-instance>
+	</network-instances>
+	<routing-policy xmlns="http://openconfig.net/yang/routing-policy">
+		<defined-sets>
+			<bgp-defined-sets xmlns="http://openconfig.net/yang/bgp-policy">
+				<community-sets>
+					<community-set delete="delete">
+						<community-set-name>openconfig-vrf-export-com</community-set-name>
+					</community-set>
+					<community-set delete="delete">
+						<community-set-name>openconfig-vrf-import-com</community-set-name>
+					</community-set>
+				</community-sets>
+			</bgp-defined-sets>
+		</defined-sets>
+		<policy-definitions>
+			<policy-definition delete="delete">
+				<name>openconfig-vrf-export</name>
+			</policy-definition>
+			<policy-definition delete="delete">
+				<name>openconfig-vrf-import</name>
+			</policy-definition>
+		</policy-definitions>
+	</routing-policy>
+</configuration>
