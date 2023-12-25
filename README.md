@@ -330,7 +330,7 @@ $ python3 load_config.py openconfig-update.xml xml mx204-83
 +    }
 ```
 #### Delete
-The last CRUD fucntion is Delete. We can remove the Openconfig configuration either with the XML [file](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.xml) using the delete="delete" attribute or using the ASCII [text](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.set) and the delete: statement
+The last CRUD function is Delete. We can remove the Openconfig configuration either with the XML [file](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.xml) using the delete="delete" attribute or using the ASCII [text](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.set) and the "delete:" statement
 ```
 $ python3 load_config.py openconfig-delete.xml xml mx204-83
 
@@ -376,4 +376,4 @@ $ python3 load_config.py openconfig-delete.set set mx204-83
 -  }
 ```
 
-As a result, we succesfully demostrated that Juniper devices can support CRUD operations with the Openconfig data model.
+As a result, we succesfully demonstrated that Juniper devices can support CRUD operations with the Openconfig data model.
