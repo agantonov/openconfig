@@ -1,14 +1,14 @@
 ### OpenConfig CRUD with Juniper
-OpenConfig defines and implements a common, vendor-independent software layer for managing network devices. The goal of OpenConfig is to enable network automation teams to utilize a single unified data model for configuring network devices from various vendors. Juniper has [incorporated](https://www.juniper.net/documentation/us/en/software/junos/open-config/topics/concept/openconfig-installing.html) OpenConfig models into the standard Junos package starting from Junos 18.3R1.
-By default, the OpenConfig schema is not accessible through the Command Line Interface (CLI). To reveal the OpenConfig knob in the CLI, execute the following command:
+OpenConfig defines and implements a common, vendor-independent software layer for managing network devices. The goal of OpenConfig is to enable network automation teams to use a single unified data model for configuring network devices from various vendors. Juniper has [incorporated](https://www.juniper.net/documentation/us/en/software/junos/open-config/topics/concept/openconfig-installing.html) OpenConfig models into the standard Junos package starting from Junos 18.3R1.
+By default, the OpenConfig schema is not accessible through the CLI. To reveal the OpenConfig knob in the CLI, execute the following command:
 ```
 set system schema openconfig unhide
 ```
-You can explore all supported OpenConfig models through the following [link](https://www.juniper.net/documentation/us/en/software/junos/open-config/topics/concept/openconfig-data-model-version.html)
+You can explore all supported OpenConfig models through the following [link](https://www.juniper.net/documentation/us/en/software/junos/open-config/topics/concept/openconfig-data-model-version.html).
 
 Below, I will demonstrate the four fundamental functions that an OpenConfig model should be capable of: Create, Read, Update, and Delete (CRUD).
 
-I prepared two simple Python scripts to load and read configurations to/from a Juniper device. These scripts utilize the Juniper [PyEZ library](https://www.juniper.net/documentation/us/en/software/junos-pyez/junos-pyez-developer/topics/concept/junos-pyez-overview.html), which significantly simplifies the way developers interact with Juniper devices.
+I have prepared two simple Python scripts to load and read configurations to/from a Juniper device. These scripts utilize the Juniper [PyEZ library](https://www.juniper.net/documentation/us/en/software/junos-pyez/junos-pyez-developer/topics/concept/junos-pyez-overview.html), which significantly simplifies the way developers interact with Juniper devices.
 
 * [load_config.py](https://github.com/agantonov/openconfig/blob/main/load_config.py) loads configuration to Juniper Device:
 ```
@@ -52,15 +52,15 @@ optional arguments:
                         Password
 ```
 #### Create
-[Here](https://github.com/agantonov/openconfig/blob/main/openconfig-create.xml) you can find the configuration file in XML format using Openconfig model. It creates the following objects:
+[Here](https://github.com/agantonov/openconfig/blob/main/openconfig-create.xml) you can find the configuration file in XML format using the Openconfig model. It creates the following objects:
   - Interface lo0.2 = 2.2.2.2/32
   - Routing-policies:
-  		openconfig-vrf-import
-  		openconfig-vrf-export
-  - L3VPN: openconfig-vrf
-  		interface: lo0.2
-  		import-policy: openconfig-vrf-import
-  		export-policy: openconfig-vrf-export
+      - openconfig-vrf-import
+      - openconfig-vrf-export 
+  - L3VPN openconfig-vrf
+      - interface: lo0.2
+      - import-policy: openconfig-vrf-import
+      - export-policy: openconfig-vrf-export
 ```
 $ python3 load_config.py openconfig-create.xml xml mx204-83
 
@@ -186,7 +186,7 @@ $ python3 load_config.py openconfig-create.xml xml mx204-83
 The configuration has been successfully applied.
 
 #### Read
-Let's read the configuration we have just uploaded to the device:
+Now let's read the configuration we have just uploaded to the device:
 * Interfaces subtree in the XML format
 ```
 $ python3 read_config.py -f 'interfaces' -m openconfig xml mx204-83
@@ -238,10 +238,10 @@ set openconfig-routing-policy:routing-policy policy-definitions policy-definitio
 The next action is the configuration modification. We will do the following: 
   - Create interface: ae83.4083
   - Add inteface ae83.4083 to L3VPN openconfig-vrf
-  - Add static route to L3VPN openconfig-vrf
+  - Add a static route to L3VPN openconfig-vrf
   - Add another term to export static routes from L3VPN openconfig-vrf
 
-In order to do that I will apply the XML configuration file [openconfig-update.xml](https://github.com/agantonov/openconfig/blob/main/openconfig-update.xml):
+To accomplish this, I will apply the XML configuration file [openconfig-update.xml](https://github.com/agantonov/openconfig/blob/main/openconfig-update.xml):
 ```
 $ python3 load_config.py openconfig-update.xml xml mx204-83
 
@@ -330,7 +330,7 @@ $ python3 load_config.py openconfig-update.xml xml mx204-83
 +    }
 ```
 #### Delete
-The last CRUD fucntion is Delete. We can remove the Openconfig confiruration either with the XML [file](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.xml) the delete="delete" attribute or using the ASCII [text](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.set) and the delete: statement
+The last CRUD fucntion is Delete. We can remove the Openconfig configuration either with the XML [file](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.xml) using the delete="delete" attribute or using the ASCII [text](https://github.com/agantonov/openconfig/blob/main/openconfig-delete.set) and the delete: statement
 ```
 $ python3 load_config.py openconfig-delete.xml xml mx204-83
 
@@ -376,4 +376,4 @@ $ python3 load_config.py openconfig-delete.set set mx204-83
 -  }
 ```
 
-As a result, we succesfully demostrated that Juniper device can support CRUD operations with Openconfig data model.
+As a result, we succesfully demostrated that Juniper devices can support CRUD operations with the Openconfig data model.
