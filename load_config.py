@@ -6,9 +6,9 @@ from jnpr.junos.utils.config import Config
 
 def load_config():
     parser = argparse.ArgumentParser(description='Load Juniper Config')    
-    parser.add_argument('config', type=open, help='Name of the file with configuration to be uploaded')
+    parser.add_argument('config', type=open, help='Name of the file containing the configuration to be uploaded')
     parser.add_argument('format', type=str, help='Configuration file format')
-    parser.add_argument('device', type=str, help='IP address or domain name of Juniper router')
+    parser.add_argument('device', type=str, help='IP address or domain name of the Juniper router')
     parser.add_argument('-u','--user', type=str, help='User name')
     parser.add_argument('-p','--passwd', type=str, help='Password')
 #    parser.add_argument('-k','--key', type=str, help='SSH private key file')
