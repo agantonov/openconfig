@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 ### OpenConfig CRUD with Juniper
 OpenConfig defines and implements a common, vendor-independent software layer for managing network devices. The goal of OpenConfig is to enable network automation teams to use a single unified data model for configuring network devices from various vendors. Juniper has [incorporated](https://www.juniper.net/documentation/us/en/software/junos/open-config/topics/concept/openconfig-installing.html) OpenConfig models into the standard Junos package starting from Junos 18.3R1.
 By default, the OpenConfig schema is not accessible through the CLI. To reveal the OpenConfig knob in the CLI, execute the following command:
