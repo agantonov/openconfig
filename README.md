@@ -376,4 +376,4 @@ $ python3 load_config.py openconfig-delete.set set mx204-83
 -  }
 ```
 
-As a result, we succesfully demonstrated that Juniper devices can support CRUD operations with the Openconfig data model.
+Thus, we have succesfully demonstrated that Juniper devices can support CRUD operations with the Openconfig data model.
